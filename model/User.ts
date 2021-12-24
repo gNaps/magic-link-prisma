@@ -1,7 +1,3 @@
-export interface User {
-    id: number,
-    email: string,
-    username: string | undefined,
-    created_at: Date,
-    policy_groups: string
-} 
+import { Prisma } from "@prisma/client";
+
+export type UserPrisma  = Prisma.userCreateInput & {id?: number}
