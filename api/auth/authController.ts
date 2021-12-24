@@ -2,9 +2,7 @@ import { Request, Response } from "express";
 import { sendMail } from "../../services/mailService";
 import { userService } from "../user/userService";
 import { authService } from "./authService";
-import { clientRedirect } from "../../config";
 import { UserPrisma } from "../../model/User";
-import jwt from "jsonwebtoken";
 import { generateAccessToken } from "../../utils/utils";
 
 /**
