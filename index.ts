@@ -2,7 +2,7 @@ import express from "express";
 import { userController } from "./api/user/userController";
 import * as dotenv from "dotenv";
 import { authController } from "./api/auth/authController";
-import { verifyToken, verifyPolicy } from "./utils/authentication";
+import { verifyToken, verifyPolicy } from "./middlewares/authentication";
 import cors from "cors";
 import { appRouter } from "./api/router";
 

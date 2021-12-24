@@ -1,5 +1,5 @@
 import express from "express";
-import { verifyPolicy, verifyToken } from "../../utils/authentication";
+import { verifyPolicy, verifyToken } from "../../middlewares/authentication";
 import { userController } from "./userController";
 
 const router = express.Router();
