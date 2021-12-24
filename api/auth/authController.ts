@@ -26,10 +26,8 @@ const sendTokenForLogin = async (req: Request, res: Response) => {
   const token = await authService.generateNewToken(user.id);
   await authService.disableOldToken(user.id, token);
 
-  // Qui invio la mail all'utente
-  //const emailObject = "";
-  //const emailSubject = `Ciao, per eseguire la login utilizza il magic link : ${clientRedirect}?token=${token}`;
-  //sendMail("", user.email, emailObject, emailSubject, emailSubject, "");
+  const emailSubject = `Ciao, per eseguire la login utilizza il magic link : ${process.env.FRONT_END_URL}?token=${token}`;
+  sendMail(userExist.email, "Magic Link!", emailSubject, emailSubject, "");
 
   res.status(200).send(true);
 };

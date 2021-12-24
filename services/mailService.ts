@@ -1,25 +1,31 @@
-import nodemailer, { Transporter } from "nodemailer";
-import { MailOptions } from "nodemailer/lib/json-transport";
+import sgMail from "@sendgrid/mail";
 
-const transporter: Transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.MAIL_USER,
-    pass: process.env.MAIL_PASSWORD
-  },
-});
+export const sendMail = (
+  to: string,
+  subject: string,
+  text: string,
+  html: string,
+  cc?: string
+) => {
+  const msg = {
+    to: to,
+    from: process.env.SEND_GRID_SENDER!,
+    subject: subject,
+    text: text,
+    html: html,
+  };
 
-export const sendMail = (from: string, to: string, subject: string, text: string, html: string, cc: string) => {
-    const options: MailOptions = {
-        from,
-        to,
-        subject,
-        text,
-        html,
-        cc
-    };
+  console.log(msg)
 
-    
-  
-    return transporter.sendMail(options);
-}
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
+
+  sgMail
+    .send(msg)
+    .then((response) => {
+      console.log(response[0].statusCode);
+      console.log(response[0].headers);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};

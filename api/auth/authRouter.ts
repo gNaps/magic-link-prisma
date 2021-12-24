@@ -3,8 +3,8 @@ import { authController } from "./authController";
 
 const router = express.Router();
 
-router.post("/login/getMagicLink", authController.sendTokenForLogin);
-router.post("/login/me", authController.getLoggedUserByToken);
+router.post("/getMagicLink", authController.sendTokenForLogin);
+router.post("/me", authController.getLoggedUserByToken);
 
 export const authRouter = {
   router,
